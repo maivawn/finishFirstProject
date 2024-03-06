@@ -6,8 +6,23 @@ using UnityEngine.SceneManagement;
 
 public class PlayerLife : MonoBehaviour
 {
-
+    [SerializeField] float timeLoadScene = 0.2f;
     bool dead = false;
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            /*
+            GetComponent<MeshCollider>().enabled = false;
+            GetComponent<Rigidbody>().isKinematic = true;
+            GetComponent<PlayerMovement>().enabled = false;
+            */
+            Die();
+        }
+    }
+
 
     private void Update()
     {
@@ -18,7 +33,8 @@ public class PlayerLife : MonoBehaviour
     }
     void Die()
     {
-        Invoke(nameof(ReloadLevel), 1.3f);
+        
+        Invoke(nameof(ReloadLevel), timeLoadScene);
         dead = true;
     }
     void ReloadLevel()
