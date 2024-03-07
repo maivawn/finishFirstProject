@@ -13,8 +13,19 @@ public class ItemCollector : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             coins++;
+            savecoins();
             coinsText.text = "Coins :" + coins;
         }
-        
+
+    }
+    public void savecoins()
+    {
+        PlayerPrefs.SetInt("CoinsScene1", coins);
+        PlayerPrefs.Save();
+        Debug.Log(PlayerPrefs.GetInt("CoinsScene1"));
+    }
+    private void Awake()
+    {
+        savecoins();
     }
 }

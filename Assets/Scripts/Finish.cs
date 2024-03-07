@@ -9,8 +9,10 @@ public class Finish : MonoBehaviour
     {
         if (other.gameObject.name == ("Player"))
         {
-            UnlockNewlevel();
+           
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+            UnlockNewlevel();
         }
     }
     void UnlockNewlevel()

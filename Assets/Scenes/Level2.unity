@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -768,7 +768,7 @@ GameObject:
   - component: {fileID: 783940140}
   - component: {fileID: 783940139}
   - component: {fileID: 783940145}
-  - component: {fileID: 783940146}
+  - component: {fileID: 783940147}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -904,7 +904,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeLoadScene: 0.2
---- !u!114 &783940146
+--- !u!114 &783940147
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -913,7 +913,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 783940138}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 464130dbc2c4f2c48886e4e1f51a8bbb, type: 3}
+  m_Script: {fileID: 11500000, guid: 21966711f8628654199df2161a84aaf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   coinsText: {fileID: 2056417402}
