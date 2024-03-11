@@ -8,7 +8,7 @@ public class PlayerLife : MonoBehaviour
 {
     [SerializeField] float timeLoadScene = 0.2f;
     bool dead = false;
-
+    [SerializeField] AudioSource deathSound;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -36,6 +36,7 @@ public class PlayerLife : MonoBehaviour
         
         Invoke(nameof(ReloadLevel), timeLoadScene);
         dead = true;
+        deathSound.Play();
     }
     void ReloadLevel()
     {

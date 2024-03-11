@@ -7,14 +7,18 @@ public class ItemCollector : MonoBehaviour
 {
     int coins = 0;
     [SerializeField] Text coinsText;
+
+    [SerializeField] AudioSource coinsAudioSource;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Coins"))
         {
             other.gameObject.SetActive(false);
             coins++;
+            coinsAudioSource.Play();
             savecoins();
             coinsText.text = "Coins :" + coins;
+            
         }
 
     }
@@ -22,7 +26,7 @@ public class ItemCollector : MonoBehaviour
     {
         PlayerPrefs.SetInt("CoinsScene1", coins);
         PlayerPrefs.Save();
-        Debug.Log(PlayerPrefs.GetInt("CoinsScene1"));
+       
     }
     private void Awake()
     {

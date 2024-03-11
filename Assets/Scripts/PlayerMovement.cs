@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumdForce = 5f;
     [SerializeField] float movementSpeed = 6f;
 
+    [SerializeField] AudioSource jumpSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +31,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && IsGround ())
         {
-            rb.velocity = new Vector3 (rb.velocity.x , jumdForce , rb.velocity.z);
+            jump();
+        }
+        void jump()
+        {
+            rb.velocity = new Vector3(rb.velocity.x, jumdForce, rb.velocity.z);
+            jumpSound.Play();       
         }
 
         bool IsGround()
