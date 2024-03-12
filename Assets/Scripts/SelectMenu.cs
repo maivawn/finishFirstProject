@@ -9,5 +9,6 @@ public class SelectMenu : MonoBehaviour
     public void GameNext()
     {
         selectMenu.SetActive(true);
+        Time.timeScale = 0;
     }
 }

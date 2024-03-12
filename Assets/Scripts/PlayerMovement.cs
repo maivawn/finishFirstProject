@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -14,6 +17,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float movementSpeed = 6f;
 
     [SerializeField] AudioSource jumpSound;
+    [SerializeField] private InputActionReference moveActionToUse;
+    Vector2 moveVector;
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,18 +33,18 @@ public class PlayerMovement : MonoBehaviour
     {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
+
+        Vector3 moveDirection = new Vector3 (moveVector.x,0, moveVector.y);
+        moveDirection.Normalize();
+        transform.Translate(moveDirection * movementSpeed * Time.deltaTime);
+
          rb.velocity = new Vector3 (horizontalInput * movementSpeed , rb.velocity.y, verticalInput *movementSpeed);
 
         if (Input.GetButtonDown("Jump") && IsGround ())
         {
             jump();
         }
-        void jump()
-        {
-            rb.velocity = new Vector3(rb.velocity.x, jumdForce, rb.velocity.z);
-            jumpSound.Play();       
-        }
-
+       
         bool IsGround()
         {
             return Physics.CheckSphere(groundCheck.position, .3f, ground);
@@ -47,5 +53,18 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    public void jump()
+    {
+        rb.velocity = new Vector3(rb.velocity.x, jumdForce, rb.velocity.z);
+        jumpSound.Play();
+    }
     
+    public void InputPlayer(InputAction.CallbackContext  _context)
+    {
+        moveVector = _context.ReadValue<Vector2>();
+    }
+    public void OnJumpButtonPress()
+    {
+        jump();
+    }
 }
