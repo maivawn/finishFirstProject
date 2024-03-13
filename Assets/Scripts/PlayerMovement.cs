@@ -11,16 +11,16 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public LayerMask ground;
 
-
+  
     Rigidbody rb;
     [SerializeField] float jumdForce = 5f;
     [SerializeField] float movementSpeed = 6f;
 
     [SerializeField] AudioSource jumpSound;
-    [SerializeField] private InputActionReference moveActionToUse;
-    Vector2 moveVector;
+    // [SerializeField] private InputActionReference moveActionToUse;
+    // Vector2 moveVector;
 
-
+  
     // Start is called before the first frame update
     void Start()
     {
@@ -31,14 +31,17 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
+        rb.velocity = new Vector3(horizontalInput * movementSpeed, rb.velocity.y, verticalInput * movementSpeed);
 
-        Vector3 moveDirection = new Vector3 (moveVector.x,0, moveVector.y);
-        moveDirection.Normalize();
-        transform.Translate(moveDirection * movementSpeed * Time.deltaTime);
 
-         rb.velocity = new Vector3 (horizontalInput * movementSpeed , rb.velocity.y, verticalInput *movementSpeed);
+        //Vector3 moveDirection = new Vector3 (moveVector.x,0, moveVector.y);
+        // moveDirection.Normalize();
+        // transform.Translate(moveDirection * movementSpeed * Time.deltaTime);
+
+
 
         if (Input.GetButtonDown("Jump") && IsGround ())
         {
@@ -52,6 +55,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+    
+    
 
     public void jump()
     {
@@ -59,12 +64,9 @@ public class PlayerMovement : MonoBehaviour
         jumpSound.Play();
     }
     
-    public void InputPlayer(InputAction.CallbackContext  _context)
-    {
-        moveVector = _context.ReadValue<Vector2>();
-    }
-    public void OnJumpButtonPress()
-    {
-        jump();
-    }
+   // public void InputPlayer(InputAction.CallbackContext  _context)
+   // {
+   // moveVector = _context.ReadValue<Vector2>();
+  //}
+   
 }

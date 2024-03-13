@@ -8,12 +8,12 @@ public class Finish : MonoBehaviour
 {
     public SelectMenu menu;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.name == ("Player"))
+        if (collision.gameObject.name == ("Player"))
         {
 
-          menu.GameNext();
+            menu.GameNext();
 
             UnlockNewlevel();
         }
