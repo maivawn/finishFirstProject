@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumdForce = 5f;
     [SerializeField] float movementSpeed = 6f;
 
+
     [SerializeField] AudioSource jumpSound;
     // [SerializeField] private InputActionReference moveActionToUse;
     // Vector2 moveVector;
@@ -40,9 +41,6 @@ public class PlayerMovement : MonoBehaviour
         //Vector3 moveDirection = new Vector3 (moveVector.x,0, moveVector.y);
         // moveDirection.Normalize();
         // transform.Translate(moveDirection * movementSpeed * Time.deltaTime);
-
-
-
         if (Input.GetButtonDown("Jump") && IsGround ())
         {
             jump();
@@ -55,9 +53,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
-    
-    
-
     public void jump()
     {
         rb.velocity = new Vector3(rb.velocity.x, jumdForce, rb.velocity.z);
